@@ -1,8 +1,9 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {View, StatusBar, Platform} from 'react-native';
-import shadower from '../shadower';
 import {observer} from 'mobx-react';
 import ScreenMode from '../../components/screenMode';
+import stores from '../../stores';
 
 const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 32 : StatusBar.currentHeight;
 
@@ -10,12 +11,23 @@ const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 32 : StatusBar.currentHeight;
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      theme: stores.CurrentScreenMode.currentTheme,
+    };
     //StatusBar.setTranslucent(true);
+  }
+  componentDidMount() {
+    stores.CurrentScreenMode.getCurrentMode().then((mode) => {
+      this.state.theme = mode.currentTheme;
+    });
   }
 
   render() {
     return (
-      <View style={{borderWidth: 0}}>
+      <View
+        style={{
+          borderWidth: 0,
+        }}>
         <StatusBar
           barStyle={this.props.barStyle ? this.props.barStyle : 'light-content'}
           backgroundColor={'rgba(0, 0, 0, 0)'}
@@ -31,7 +43,7 @@ class Header extends Component {
             },
           ]}>
           {this.props.home
-            ? this.props.headerBody(ScreenMode.colors.type)
+            ? this.props.headerBody(this.state.theme)
             : this.props.headerBody()}
         </View>
       </View>

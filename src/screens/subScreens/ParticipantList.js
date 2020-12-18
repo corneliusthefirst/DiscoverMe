@@ -109,7 +109,7 @@ export default class ParticipantList extends Unmounter {
     return (
       <HeaderBodySimple
         {...this.props}
-        title={ScreenLanguage.currentlang.Participants}
+        title={ScreenLanguage.Participants}
       />
     );
   };

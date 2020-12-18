@@ -50,34 +50,34 @@ class RemindDInfoPage extends Component {
 
 
           <View style={this.styles.listView} >
-              <Text style={this.styles.boldText} >{ScreenLanguage.currentlang.Daily} :</Text>
+              <Text style={this.styles.boldText} >{ScreenLanguage.Daily} :</Text>
               <View style={{flex:1}}>
-              <Text numberOfLines={3} >{ScreenLanguage.currentlang.DailyInfo} {moment(this.props.period).format('LT')}</Text>
+              <Text numberOfLines={3} >{ScreenLanguage.DailyInfo} {moment(this.props.period).format('LT')}</Text>
               </View>
 
           </View>
 
           <View style={this.styles.listView} >
-              <Text style={this.styles.boldText} >{ScreenLanguage.currentlang.Weekly} :</Text>
+              <Text style={this.styles.boldText} >{ScreenLanguage.Weekly} :</Text>
               <View style={{flex:1}}>
-                 <Text numberOfLines={3} >{ScreenLanguage.currentlang.WeeklyInfo} {moment(this.props.period).format('dddd [at] LT')}</Text>
+                 <Text numberOfLines={3} >{ScreenLanguage.WeeklyInfo} {moment(this.props.period).format('dddd [at] LT')}</Text>
               </View>
           </View>
 
 
           <View style={this.styles.listView} >
-              <Text style={this.styles.boldText} >{ScreenLanguage.currentlang.Monthly} :</Text>
+              <Text style={this.styles.boldText} >{ScreenLanguage.Monthly} :</Text>
               <View style={{flex:1}}>
-                   <Text numberOfLines={3} >{ScreenLanguage.currentlang.MonthlyInfo} {moment(this.props.period).format('Do [at] LT')}</Text>
+                   <Text numberOfLines={3} >{ScreenLanguage.MonthlyInfo} {moment(this.props.period).format('Do [at] LT')}</Text>
                </View>
         </View>
 
 
 
           <View style={this.styles.listView} >
-              <Text style={this.styles.boldText} >{ScreenLanguage.currentlang.Yearly} :</Text>
+              <Text style={this.styles.boldText} >{ScreenLanguage.Yearly} :</Text>
               <View style={{flex:1}}>
-                 <Text numberOfLines={3} >{ScreenLanguage.currentlang.YearlyInfo} {moment(this.props.period).format('Do MMMM  [at] LT')}</Text>
+                 <Text numberOfLines={3} >{ScreenLanguage.YearlyInfo} {moment(this.props.period).format('Do MMMM  [at] LT')}</Text>
               </View>
 
           </View>

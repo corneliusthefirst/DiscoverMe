@@ -42,30 +42,30 @@ class HeaderParamsMenu extends DiscoveryMenu {
           <MenuItem
             textStyle={{color: '#0A4E52'}}
             onPress={() => this.changeMode()}>
-            {ScreenLanguage.currentlang.ChangeMode}
+            {ScreenLanguage.ChangeMode}
           </MenuItem>
           <MenuItem
             textStyle={{color: '#0A4E52'}}
             onPress={() => this.changeLanguage()}>
-            {ScreenLanguage.currentlang.ChangeLanguage}
+            {ScreenLanguage.ChangeLanguage}
           </MenuItem>
 
           <MenuItem
             textStyle={{color: '#0A4E52'}}
             onPress={() => this.discoveryWeb()}>
-            {ScreenLanguage.currentlang.DiscoveryWeb}
+            {ScreenLanguage.DiscoveryWeb}
           </MenuItem>
 
           {/* <MenuItem
             textStyle={{color: '#0A4E52'}}
             onPress={() => this.discoveryWeb()}>
-            {ScreenLanguage.currentlang.MaskedStories}
+            {ScreenLanguage.MaskedStories}
           </MenuItem>*/}
 
           <MenuItem
             textStyle={{color: '#0A4E52'}}
             onPress={() => this.Settings()}>
-            {ScreenLanguage.currentlang.Settings}
+            {ScreenLanguage.Settings}
           </MenuItem>
         </Menu>
       </View>

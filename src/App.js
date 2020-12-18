@@ -25,9 +25,15 @@ import ChooseParticipants from './screens/subScreens/ChooseParticipants';
 import CreateRemind from './screens/subScreens/CreateRemind';
 import VideoViewer from './components/screenComponents/ChatRoom/components/videoViewer';
 import ImageViewer  from './components/screenComponents/ChatRoom/components/imageViewer';
-import CustomImagePicker from './components/FileReader/customImagePicker';
+//import CustomImagePicker from './components/FileReader/customImagePicker';
 import { enableScreens } from 'react-native-screens';
 import { TouchableOpacity } from 'react-native';
+
+import Login from '../src/screens/Login/login';
+import ContactsList from './components/Contacts/contacts';
+import Received from './screens/Received/index';
+import stores from './stores';
+import ScreenMode from './components/screenMode';
 
 
 
@@ -41,6 +47,7 @@ app.use(routerActions(), 'routerActions');
 const MainStack = createStackNavigator();
 
 enableScreens();
+
 
 export default () => {
         return (
@@ -64,7 +71,9 @@ export default () => {
                     <MainStack.Screen   name="CreateRemind" component={CreateRemind} />
                     <MainStack.Screen   name="VideoViewer" component={VideoViewer}  />
                     <MainStack.Screen   name="ImageViewer" component={ImageViewer} />
-                    <MainStack.Screen   name="CustomImagePicker" component={CustomImagePicker} />
+                    <MainStack.Screen   name="Login" component={Login} />
+                    <MainStack.Screen   name="ContactsList" component={ContactsList} />
+                    <MainStack.Screen   name="Received" component={Received} />
                   </MainStack.Navigator>
 
                   </NavigationContainer>

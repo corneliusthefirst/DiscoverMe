@@ -1,6 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, TouchableWithoutFeedback} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from 'react-native';
 import {Thumbnail, Icon} from 'native-base';
 import stores from '../../stores/index';
 import {observer} from 'mobx-react';
@@ -12,6 +17,7 @@ import RenderDate from '../../components/RenderDate';
 import moment from 'moment';
 import uuid from 'react-native-uuid';
 import {uniqBy} from 'lodash';
+import Avatar from '../../components/screenComponents/Avatar';
 
 @observer
 class MyStoriesProfile extends Component {
@@ -61,7 +67,7 @@ class MyStoriesProfile extends Component {
   };
 
   componentDidMount() {
-   /* stores.MystoriesStore.setMyStory({
+    /* stores.MystoriesStore.setMyStory({
       phone: '00330666406835',
       username: 'Cornelius',
       profile: 'https://avatars0.githubusercontent.com/u/16208872?s=460&v=4',
@@ -196,19 +202,20 @@ class MyStoriesProfile extends Component {
     return (
       <View style={{height: 100, flexDirection: 'row'}}>
         <View>
-          <TouchableWithoutFeedback
+          <TouchableOpacity
             onPress={() => {
               this.openMyStories();
             }}>
-            <Thumbnail
-              style={{height: 90, width: 90, borderRadius: 45, margin: 12}}
-              source={{
-                uri: this.state.profile
+            <Avatar
+              uri={
+                this.state.profile
                   ? this.state.profile
-                  : this.props.mystories.profile,
-              }}
+                  : this.props.mystories.profile
+              }
+              enableDot={false}
+              style={{height: 90, width: 90, borderRadius: 45, margin: 12}}
             />
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
           <View
             style={{
               ...shadower(),
@@ -220,10 +227,10 @@ class MyStoriesProfile extends Component {
               alignItems: 'center',
               justifyContent: 'center',
               alignSelf: 'flex-end',
-              marginTop: 65,
-              right: 0,
+              marginTop: 75,
+              right: -4,
               borderWidth: 2,
-              borderColor: 'white',
+              borderColor: ScreenMode.colors.bodyBackground,
             }}>
             <Icon
               name="add-a-photo"
@@ -245,19 +252,22 @@ class MyStoriesProfile extends Component {
           <Text
             ellipsizeMode={'tail'}
             numberOfLines={1}
-            style={{fontWeight: '700'}}>
+            style={{fontWeight: '700', color: ScreenMode.colors.bodyText}}>
             {this.props.mystories.username}
           </Text>
-          <Text>
-            {ScreenLanguage.currentlang.TotalViews +
+          <Text style={{color: ScreenMode.colors.bodyText}}>
+            {ScreenLanguage.TotalViews +
               GlobalFunctions.ShowViews(this.props.mystories.totalviews)}
           </Text>
 
-          <Text>
-            {ScreenLanguage.currentlang.Age + ' : ' + this.props.mystories.age}
+          <Text style={{color: ScreenMode.colors.bodyText}}>
+            {ScreenLanguage.Age + ' : ' + this.props.mystories.age}
           </Text>
 
-          <RenderDate date={this.props.mystories.updated_at} />
+          <RenderDate
+            date={this.props.mystories.updated_at}
+            style={{color: ScreenMode.colors.bodyText}}
+          />
         </View>
       </View>
     );

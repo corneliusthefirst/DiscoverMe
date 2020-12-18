@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {PureComponent} from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, View, VirtualizedList} from 'react-native';
 //import {Spinner, CardItem, Text, List} from 'native-base';
 
 const ifCloseToTop = ({layoutMeasurement, contentOffset, contentSize}) => {

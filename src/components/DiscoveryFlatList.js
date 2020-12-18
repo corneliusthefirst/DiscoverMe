@@ -5,8 +5,11 @@ import {TouchableOpacity,Text, View, StyleSheet} from 'react-native';
 import AppStyles from '../config/styles';
 import BaseFlatList from '../components/BaseFlatList';
 import { Icon } from 'native-base';
+import ScreenMode from './screenMode';
+import { observer } from 'mobx-react';
 
-class DiscoveryList extends Component {
+@observer
+class  DiscoveryList extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -148,7 +151,7 @@ render() {
           this.props.onScroll && this.props.onScroll(event);
         }
           }
-        backgroundColor={this.props.backgroundColor}
+        backgroundColor={this.props.backgroundColor ? this.props.backgroundColor : ScreenMode.colors.bodyBackground}
         onScrollBeginDrag={this.props.onScrollBeginDrag}
         onScrollEndDrag={this.props.onScrollEndDrag}
         onMomentumScrollBegin={this.props.onMomentumScrollBegin}
@@ -179,9 +182,9 @@ const styles = StyleSheet.create({
     right: 10,
     bottom: 30,
     zIndex: 999,
-    height: 40,
-    width: 40,
-    borderRadius: 20,
+    height: 34,
+    width: 34,
+    borderRadius: 17,
     backgroundColor: '#F5F5F5',
     alignItems: 'center',
     justifyContent: 'center',

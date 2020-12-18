@@ -85,6 +85,7 @@ const style = StyleSheet.create({
   },
   timeStyle: {
     fontSize: 10,
+    opacity: 0.5,
   },
   mainMessageView: {
     flexDirection: 'column',
@@ -96,6 +97,7 @@ const style = StyleSheet.create({
   },
   dateText: {
     fontSize: 14,
+    opacity: 0.5,
   },
   tickView: {
     //position: 'absolute',

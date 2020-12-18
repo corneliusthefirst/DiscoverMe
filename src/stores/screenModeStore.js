@@ -12,16 +12,21 @@ export default class CurrentScreenMode {
   }
 
   @observable currentMode = 'whiteMode';
+  @observable currentTheme = 'dark';
+
   saveKey = {
     key: 'currentMode',
-    data: '',
+    data: {},
   };
 
-  @action setMode(newMode) {
+  @action setMode(options) {
     return new Promise((resolve, reject) => {
-      this.saveKey.data = newMode;
+      this.saveKey.data.currentMode = options.mode;
+      this.saveKey.data.currentTheme = options.theme;
+
       storage.save(this.saveKey).then(() => {
-        this.currentMode = this.saveKey.data;
+        this.currentMode = options.mode;
+        this.currentTheme = options.theme;
         resolve();
       });
     });
@@ -31,11 +36,16 @@ export default class CurrentScreenMode {
     return new Promise((resolve, reject) => {
       storage
         .load({key: 'currentMode', autoSync: true})
-        .then((mode) => {
-          resolve(mode);
+        .then((screenmode) => {
+          resolve(screenmode);
         })
-        .catch((error) => {
-          resolve(this.currentMode);
+        .catch((e) => {
+          this.setMode(this.currentMode);
+          this.setTheme(this.currentTheme);
+          resolve({
+            currentMode: this.currentMode,
+            currentTheme: this.currentTheme,
+          });
         });
     });
   }

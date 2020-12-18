@@ -4,12 +4,10 @@ import React,{Component} from 'react';
 import {
   StyleSheet,
   View,
-  ScrollView,
   Text,
 } from 'react-native';
-import {Thumbnail,Icon} from 'native-base';
-
-import stores from '../../stores/index';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ScreenMode from '../../components/screenMode';
 import { observer } from 'mobx-react';
 import ScreenLanguage from '../../components/screenLanguage';
@@ -75,34 +73,32 @@ render(){
     return (
       this.state.mounted ?  <View style={this.styles.container}>
            <View style={this.styles.participations}>
-              <Text style={{fontSize:12.5}}>{ScreenLanguage.currentlang.NoOfParticipations} : </Text>
+              <Text style={{fontSize:12.5}}>{ScreenLanguage.NoOfParticipations} : </Text>
               <Text style={{color:ScreenMode.colors.sendMessage}}>25</Text>
            </View>
 
            <View style={this.styles.row}>
            <View style={[this.styles.roundIcon,{ backgroundColor:ScreenMode.colors.sendMessage}]}>
-          <Icon
+          <MaterialIcons
               name="create"
-              type="MaterialIcons"
               style={{color: 'white', fontSize: 22}}
               onPress={() => this.openCamera()}
             />
           </View>
 
-             <Text>{ScreenLanguage.currentlang.NewVote}</Text>
+             <Text>{ScreenLanguage.NewVote}</Text>
            </View>
 
            <View style={this.styles.row}>
            <View style={[this.styles.roundIcon,{ backgroundColor:ScreenMode.colors.sendMessage}]}>
-           <Icon
+           <MaterialCommunityIcons
               name="view-dashboard"
               active={true}
-              type="MaterialCommunityIcons"
               style={{color: 'white', fontSize: 22}}
               onPress={() => this.openCamera()}
             />
             </View>
-             <Text>{ScreenLanguage.currentlang.DashBoard}</Text>
+             <Text>{ScreenLanguage.DashBoard}</Text>
            </View>
 
            <View style={this.styles.allvotes}>

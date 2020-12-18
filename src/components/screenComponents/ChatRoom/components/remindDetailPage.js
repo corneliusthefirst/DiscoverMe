@@ -86,7 +86,7 @@ s
       width: '70%',
     },
     Icon: {
-        color:'black',
+        //color:'black',
         fontSize: 22,
         marginRight:5,
     },
@@ -104,7 +104,7 @@ s
         style={{
           height: 210,
           width: '100%',
-          backgroundColor: 'white',
+          backgroundColor: ScreenMode.colors.bodyBackground,
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
           borderWidth:0.5,
@@ -115,19 +115,19 @@ s
         <ScrollView>
 
         <View style={{width:'100%',justifyContent:'flex-end',alignItems:'flex-end',paddingHorizontal:5,paddingTop:10}}>
-          <Icon name="close" type="AntDesign" style={this.styles.Icon} onPress={() => {this.props.onClosed();}}/>
+          <Icon name="close" type="AntDesign" style={[this.styles.Icon,{color:ScreenMode.colors.bodyIcon}]} onPress={() => {this.props.onClosed();}}/>
         </View>
 
         {this.state.refusedClick ?
         <View style={{marginTop:10,width:'90%',alignSelf:'center',alignItems:'center',justifyContent:'center',borderWidth:0.7,borderColor:'black',borderRadius:8}}>
-            <CreateTextInput height={90} numberOfLines={4} multiline={true} placeholder={ScreenLanguage.currentlang.RefusalMessage + ' ?'} noBoder placeholderTextColor={'gray'} />
+            <CreateTextInput height={90} numberOfLines={4} multiline={true} placeholder={ScreenLanguage.RefusalMessage + ' ?'} noBoder placeholderTextColor={'gray'} />
         </View>
         : null}
 
        {!this.state.refusedClick ?
        <TouchableOpacity onPress={()=>{this.goToParticipantList();}}>
        <View style={this.styles.participantView}>
-         <Text style={{fontWeight: '700'}}> Remind Message Set For </Text>
+         <Text style={{fontWeight: '700',color:ScreenMode.colors.bodyText}}> Remind Message Set For </Text>
 
          <Text
            ellipsizeMode="tail"
@@ -139,7 +139,7 @@ s
        </TouchableOpacity> : null}
 
        {!this.state.refusedClick ? <View style={this.styles.dateView}>
-            <Text> On the{'   '}</Text>
+          <Text style={{color:ScreenMode.colors.bodyText}}> On the{'   '}</Text>
             <Moment
               format={'D MMM YYYY  [at]  LT'}
               element={Text}
@@ -150,7 +150,7 @@ s
           </View> : null }
 
         {!this.state.refusedClick ? <View style={this.styles.dateView}>
-             <Text> To the {'   '}</Text>
+           <Text style={{color:ScreenMode.colors.bodyText}}> To the {'   '}</Text>
             <Moment
                format={'D MMM YYYY  [at]  LT'}
               element={Text}
@@ -182,7 +182,7 @@ s
             onPress={() => {
               this.state.refusedClick ? this.props.onClosed(this.state.messageWithUrl) : this.setState({refusedClick:true});
             }}>
-            <Text style={{color: '#e74c3c'}}>{this.state.refusedClick ? ScreenLanguage.currentlang.None : ScreenLanguage.currentlang.Deny}</Text>
+            <Text style={{color: '#e74c3c'}}>{this.state.refusedClick ? ScreenLanguage.None : ScreenLanguage.Deny}</Text>
           </Button> : null }
 
           {!this.state.participant.accepted.state && !this.state.participant.refused.state ?
@@ -196,10 +196,10 @@ s
               alignItem: 'center',
               marginLeft: 15,
               height: 40,
-              marginRight: 5,
+              marginRight: 5, 
             }}
             onPress={this.state.refusedClick ? this.savedRefusedMessage : this.acceptedRemind}>
-            <Text style={{color: AppStyles.colors.green}} >{this.state.refusedClick ? ScreenLanguage.currentlang.Save : ScreenLanguage.currentlang.Accept }</Text>
+            <Text style={{color: AppStyles.colors.green}} >{this.state.refusedClick ? ScreenLanguage.Save : ScreenLanguage.Accept }</Text>
           </Button> : null }
 
            {this.state.participant.accepted.state  ?

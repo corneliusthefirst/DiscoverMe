@@ -163,7 +163,7 @@ class ProgressiveVideo  extends DiscoveryPureComponent {
          <View style={styles.retryView}>
              <Icon name="reload1" type="AntDesign" style={styles.retryIcon} onPress={() => {this.retryBack();}}/>
              <TouchableNativeFeedback onPress={() => {this.retryBack();}}>
-                    <Text style={{color:'white'}}>{ScreenLanguage.currentlang.Retry }</Text>
+                    <Text style={{color:'white'}}>{ScreenLanguage.Retry }</Text>
              </TouchableNativeFeedback>
         </View> : null}
 

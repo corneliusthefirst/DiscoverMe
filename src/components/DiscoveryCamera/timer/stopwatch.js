@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 import { formatTimeString } from './utils';
+import GlobalFunctions from '../../globalFunctions';
 
 
 class StopWatch extends Component {
@@ -110,7 +111,7 @@ class StopWatch extends Component {
   formatTime() {
     const { getTime, getMsecs, msecs } = this.props;
     const now = this.state.elapsed;
-    const formatted = formatTimeString(now, msecs);
+    const formatted = GlobalFunctions.formatTime(now);
     if (typeof getTime === "function") {
       getTime(formatted);
     }

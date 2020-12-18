@@ -78,8 +78,8 @@ class AddMessageModal extends Component {
                     : ScreenMode.colors.statusBarColor,
               }}>
               {this.props.dataInput.type === 'image'
-                ? ScreenLanguage.currentlang.PhotoForStoryUploaded
-                : ScreenLanguage.currentlang.VideoForStoryUploaded}
+                ? ScreenLanguage.PhotoForStoryUploaded
+                : ScreenLanguage.VideoForStoryUploaded}
             </Text>
             <Text ellipsizeMode={'tail'} numberOfLines={1}>
               url : {this.props.dataInput.url}
@@ -100,7 +100,7 @@ class AddMessageModal extends Component {
             bottomWidth={0.05}
             numberOfLines={2}
             multiline={true}
-            placeholder={ScreenLanguage.currentlang.WriteSomething}
+            placeholder={ScreenLanguage.WriteSomething}
             maxLength={300}
           />
         </View>

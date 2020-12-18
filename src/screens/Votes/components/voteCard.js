@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Entypo';
+import Entypo from 'react-native-vector-icons/Entypo';
 import UserView from '../../../components/StoriesReader/components/UserView';
 import ScreenMode from '../../../components/screenMode';
 
@@ -44,7 +44,7 @@ class VoteCard extends React.PureComponent {
               updated_at={this.props.item.updated_at} imagesize={40} namefontsize={13} />
             
 
-             <Icon
+             <Entypo
               name="dots-three-vertical"
               type="Entypo"
               style={{color: 'black', fontSize: 15}}

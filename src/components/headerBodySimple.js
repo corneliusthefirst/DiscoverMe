@@ -17,7 +17,11 @@ class HeaderBodySimple extends Component {
           name="arrowleft"
           type="AntDesign"
           style={[styles.arrowBack, {color: ScreenMode.colors.headerIconColor}]}
-          onPress={() => this.props.navigation.goBack()}
+          onPress={() =>
+            this.props.goBack
+              ? this.props.goBack()
+              : this.props.navigation.goBack()
+          }
         />
         <Text
           style={[styles.headerText, {color: ScreenMode.colors.headerText}]}>

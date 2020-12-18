@@ -87,7 +87,7 @@ hideControls = () => {
     return (
      this.state.mounted ?  <View
                    backgroundColor={'black'}
-                   style={{alignItems:'center',justifyContent:'center',borderTopRightRadius:5,borderTopLeftRadius:5, flex:1}}
+                   style={{alignItems:'center',justifyContent:'center',borderTopRightRadius:5,borderTopLeftRadius:5, flex:1 }}
                   >
                     <VideoController
                     ref={(elm) => {this.playerRef = elm;}}
@@ -130,6 +130,9 @@ hideControls = () => {
                     }}
             />
 
+
+
+
         { this.state.showControls  ?
 
         <Animated.View
@@ -140,7 +143,7 @@ hideControls = () => {
              marginTop: this.playerRef.animations.topControl.marginTop,
             },
         ]}>
-          { this.state.Pause === true && this.state.retry === false  ?
+          { this.state.Pause === true && this.state.retry === false  && this.state.showControls ?
            <TouchableOpacity style={styles.playView} onPress={() => {this.tooglePause();}} >
             <Icon name="play" type="MaterialCommunityIcons" style={styles.playIcon} onPress={() => {this.tooglePause();}}/>
            </TouchableOpacity> :
@@ -156,7 +159,7 @@ hideControls = () => {
          <View style={styles.retryView}>
              <Icon name="reload1" type="AntDesign" style={styles.retryIcon} onPress={() => {this.retryBack();}}/>
              <TouchableNativeFeedback onPress={() => {this.retryBack();}}>
-                    <Text style={{color:'white'}}>{ScreenLanguage.currentlang.Retry }</Text>
+                    <Text style={{color:'white'}}>{ScreenLanguage.Retry }</Text>
              </TouchableNativeFeedback>
         </View> : null}
 

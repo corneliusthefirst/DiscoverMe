@@ -10,6 +10,7 @@ export default class ActiveList extends Component {
       <UserItem
         item={item}
         active={this.props.active}
+        discoverlist={this.props.discoverlist ? true : false}
         {...this.props}
         donotBlur={this.props.donotBlur}
       />
@@ -27,6 +28,7 @@ export default class ActiveList extends Component {
         initialNumToRender={12}
         maxToRenderPerBatch={8}
         getItemLayout={this.getItemLayout}
+        //backgroundColor={'white'}
       />
     );
   }

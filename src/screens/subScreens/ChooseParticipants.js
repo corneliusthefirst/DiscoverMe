@@ -147,7 +147,7 @@ export default class ChooseParticipants extends Unmounter {
       <View style={{flexDirection: 'row'}}>
         <HeaderBodySimple
           {...this.props}
-          title={ScreenLanguage.currentlang.ChooseParticipants}
+          title={ScreenLanguage.ChooseParticipants}
         />
         <TouchableOpacity
           onPress={() => {

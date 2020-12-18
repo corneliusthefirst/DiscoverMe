@@ -83,7 +83,7 @@ export default class UploadStoryModal extends DiscoveryModal {
             height: 40,
           }}
           onPress={this.openGallery}>
-          <Text>{ScreenLanguage.currentlang.TakeFromGallery}</Text>
+          <Text>{ScreenLanguage.TakeFromGallery}</Text>
         </Button>
 
         <Button
@@ -98,7 +98,7 @@ export default class UploadStoryModal extends DiscoveryModal {
             height: 40,
           }}
           onPress={this.openCamera}>
-          <Text>{ScreenLanguage.currentlang.TakeFromCamera}</Text>
+          <Text>{ScreenLanguage.TakeFromCamera}</Text>
         </Button>
       </View>
     );

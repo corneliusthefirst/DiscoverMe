@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 16,
     paddingRight: 12,
-    paddingVertical: 8,
+    paddingVertical: 10,
   },
   userName: {
     flex: 1,

@@ -15,15 +15,16 @@ import HeaderParamsMenu from '../../components/headerParamsMenu';
 import ScreenLanguage from '../../components/screenLanguage';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import request from '../../services/requestObjects';
-import DiscoveryCamera from '../../components/DiscoveryCamera';
+//import DiscoveryCamera from '../../components/DiscoveryCamera';
 import uuid from 'react-native-uuid';
-import { createThumbnail } from "react-native-create-thumbnail";
+import { createThumbnail } from 'react-native-create-thumbnail';
 //tabs
 import Discoveries from '../Discoveries';
 import Discover from '../Dicover';
 import Profile from '../Profile';
 import TopTabs from '../HomeTopTabs';
 import RemindDetailPage from '../../components/screenComponents/ChatRoom/components/remindDetailPage';
+//import FloatingButton from '../HomeTopTabs/floatingButton';
 //import moment from 'moment';
 
 
@@ -49,25 +50,45 @@ class Home  extends Component{
 
     componentDidMount(){
         stores.CurrentScreenMode.getCurrentMode().then((mode) => {
-            ScreenMode.setMode(mode);
+           if (mode !== null ){
+              let options = {mode:mode.currentMode,theme:mode.currentTheme};
+              ScreenMode.setMode(options);
+              stores.CurrentScreenMode.currentTheme = mode.currentTheme;
+             } else {
+              let options = {mode:stores.CurrentScreenMode.currentMode,theme:stores.CurrentScreenMode.currentTheme};
+              stores.CurrentScreenMode.setMode(options).then(() => {
+                ScreenMode.setMode(options);
+              });
+            }
           });
+
         stores.CurrentScreenLanguage.getCurrentLanguage().then((lang)=>{
-            ScreenLanguage.setLanguage(lang);
+          stores.CurrentScreenLanguage.setLanguage(lang);
         });
 
     }
 
 title = (type) => {
-    switch (type) {
+   /* switch (type) {
         case 'red':
-            return  <Thumbnail source={require('../../../assets/AppTitleRed.png')} style={{width: 120 }} />;
+            return  <Thumbnail source={require('../../../assets/AppTitleRed.png')} style={{width: 120 , height :50}} />;
         case 'black':
             return <Thumbnail source={require('../../../assets/AppTitleBlack.png')} style={{width: 120,height :50}} />;
         case 'white':
-            return <Thumbnail source={require('../../../assets/AppTitleWhite.png')} style={{width: 120 }} />;
+            return <Thumbnail source={require('../../../assets/AppTitleWhite.png')} style={{width: 120 ,height :50}} />;
         case 'green':
-            return <Thumbnail source={require('../../../assets/AppTitleGreen.png')} style={{width: 120 }} />;
+            return <Thumbnail source={require('../../../assets/AppTitleGreen.png')} style={{width: 120,height :50 }} />;
+      }*/
+     /* stores.CurrentScreenMode.getCurrentMode().then((mode)=>{
+        this.setState({theme:mode.currentTheme});
+      });*/
+      switch (stores.CurrentScreenMode.currentTheme) {
+        case 'dark':
+            return <Thumbnail source={require('../../../assets/AppTitleBlack.png')} style={{width: 120,height :50}} />;
+        case 'white':
+            return <Thumbnail source={require('../../../assets/AppTitleWhite.png')} style={{width: 120 ,height :50}} />;
       }
+
 }
 
 
@@ -137,9 +158,8 @@ createStory = (data) => {
 
   headerBody = (type)=>{
         return (
-            <View  style = {styles.headerBody} >
-              <View style={{height:'100%',width:'100%',flexDirection:'row' }}>
-                  <View style={{justifyContent:'center',height:'94%',alignSelf:'flex-end'}}>
+              <View style={styles.mainheaderView}>
+                  <View style={{justifyContent:'center',height:'94%',alignSelf:'flex-end',paddingLeft:10}}>
                      {this.title(type)}
                   </View>
                   <View style={styles.leftHeaderContent}>
@@ -148,7 +168,7 @@ createStory = (data) => {
                       <HeaderParamsMenu  style={{marginRight: 10,fontSize:17,color:ScreenMode.colors.headerIconColor}}  {...this.props} />
                   </View>
               </View>
-            </View>
+
         );
     }
 
@@ -157,11 +177,12 @@ createStory = (data) => {
     renderBottomTabs = () => {
         return (
             <Tab.Navigator
+
               screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                   let iconName,iconType,iconColor,fontSize;
 
-                  iconColor = color = focused ? ScreenMode.colors.type === 'white' ? ScreenMode.colors.blue : ScreenMode.colors.headerBackground : 'black';
+                  iconColor = focused ?  ScreenMode.colors.sendMessage : ScreenMode.colors.bodyIcon;
 
                   if (route.name === 'Home') {
                     iconName = 'home';
@@ -189,17 +210,18 @@ createStory = (data) => {
                 },
               })}
               tabBarOptions={{
-                activeTintColor:ScreenMode.colors.type === 'white' ? ScreenMode.colors.blue : ScreenMode.colors.headerBackground,
-                inactiveTintColor: 'gray',
+                activeTintColor:ScreenMode.colors.sendMessage,
+                inactiveTintColor: ScreenMode.colors.bodySubtext,
                 keyboardHidesTabBar:true,
                 //labelStyle:{fontWeight: 'bold'},
+                style:{backgroundColor:ScreenMode.colors.bodyBackgroundLight},
               }}
             >
-              <Tab.Screen  name="Home"  options={{ tabBarLabel: ScreenLanguage.currentlang.Home /*,unmountOnBlur:true*/ }}
+              <Tab.Screen  name="Home"  options={{ tabBarLabel: ScreenLanguage.Home /*,unmountOnBlur:true*/ }}
                children={()=><TopTabs   ref={ref => {this.TopTabs = ref;}} openRemind={this.openRemind} {...this.props} />} />
-              <Tab.Screen  name="Discoveries" component={Discoveries} options={{ tabBarLabel: ScreenLanguage.currentlang.Discoveries , unmountOnBlur:true}} />
-              <Tab.Screen  name="Discover" component={Discover}  options={{ tabBarLabel: ScreenLanguage.currentlang.Discover /*, unmountOnBlur:true*/ }}/>
-              <Tab.Screen  name="Profile" component={Profile} options={{ tabBarLabel: ScreenLanguage.currentlang.Profile, unmountOnBlur:true }}/>
+              <Tab.Screen  name="Discoveries" component={Discoveries} options={{ tabBarLabel: ScreenLanguage.Discoveries , unmountOnBlur:true}} />
+              <Tab.Screen  name="Discover" component={Discover}  options={{ tabBarLabel: ScreenLanguage.Discover /*, unmountOnBlur:true*/ }}/>
+              <Tab.Screen  name="Profile" component={Profile} options={{ tabBarLabel: ScreenLanguage.Profile, unmountOnBlur:true }}/>
             </Tab.Navigator>
 
         );
@@ -210,8 +232,8 @@ createStory = (data) => {
 
         return (
 
-              <View style={styles.Body}>
-                  <Header height={60}  barStyle = {ScreenMode.colors.statusbarStyle}  headerBody={this.headerBody} home />
+              <View style={[styles.Body,{backgroundColor:ScreenMode.colors.bodyBackground}]}>
+                  <Header height={70}  barStyle = {ScreenMode.colors.statusbarStyle}  headerBody={this.headerBody} home />
                    {this.renderBottomTabs()}
                    {this.state.isopenRemind && (
                   <RemindDetailPage
@@ -221,12 +243,12 @@ createStory = (data) => {
                     {...this.props}
                     remindData={this.state.remindData.data}
                     passed={this.state.remindData.passed}
-                    donotBlur={() => {this.TopTabs.CurrentReminds.donotBlur();}}
+                  donotBlur={() => {/*this.TopTabs.CurrentReminds.donotBlur();*/}}
                   />
         )}
               </View>
 
-          );
+      );
     }
 }
 
@@ -239,14 +261,26 @@ const styles = StyleSheet.create({
      flex:1,
      alignItems: 'center',
      paddingTop: 15,
+     flexDirection:'column',
    },
    leftHeaderContent: {
+    paddingTop:17,
     position:'absolute',
     right:0,
     height: '100%',
     flexDirection: 'row',
     alignItems: 'center',
   },
+  mainheaderView: {
+    flex:1,
+    alignItems: 'center',
+    paddingTop: 15,
+    height:'100%',
+    width:'100%',
+    flexDirection:'row',
+  },
+
+
 });
 
 export default  Home;

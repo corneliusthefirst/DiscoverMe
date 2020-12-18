@@ -26,7 +26,9 @@ class  CurrentReminds extends Unmounter{
 render(){
 
     return (
-       this.state.mounted ? <View  style={{height:'100%',width:'100%'}}>
+      /* this.state.mounted ? */
+
+       <View  style={{height:'100%',width:'100%'}}>
          <View style={{flex: 1}}>
          <MessageList {...this.props} newMessages={newMessages} Cremind
           donotBlur={() => {this.donotBlur();}}
@@ -35,7 +37,9 @@ render(){
           }} />
         </View>
 
-       </View> : <WaveIndicatorView />
+      </View>
+
+      /*: <WaveIndicatorView />*/
     );
 }
 

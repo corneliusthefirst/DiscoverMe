@@ -58,7 +58,7 @@ class ImageItem extends Component {
     const { image } = item.node;
     return (
       <TouchableOpacity
-        style={{ marginBottom: imageMargin, marginRight: imageMargin,justifyContent:'center' }}
+        style={{ marginBottom: imageMargin, marginRight: imageMargin,justifyContent:'center',backgroundColor:'#dddddd' }}
         onPress={() => this.handleClick({...image,type:item.node.type.slice(0,5)})}
       >
              <FastImage

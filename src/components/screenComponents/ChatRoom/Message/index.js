@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {View, Text, TouchableHighlight} from 'react-native';
 import PropTypes from 'prop-types';
 import Svg, {Path} from 'react-native-svg';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {moderateScale, scale} from 'react-native-size-matters';
 import ScreenMode from '../../../screenMode';
 import ProgressiveImage from '../components/progressiveImage';
 import AudioBox from '../components/AudioBox';
@@ -106,10 +106,12 @@ class Message extends Component {
   renderReceivedTime = () => {
     return (
       <View style={styles.timeView}>
-        <Text style={styles.timeStyle}>
+        <Text style={[styles.timeStyle, {color: ScreenMode.colors.bodyText}]}>
           {moment(this.props.message.created_at).format('hh:mm')}
         </Text>
-        <Text style={[styles.timeStyle]}>, </Text>
+        <Text style={[styles.timeStyle, {color: ScreenMode.colors.bodyText}]}>
+          ,{' '}
+        </Text>
         <Text
           ellipsizeMode="tail"
           numberOfLines={1}
@@ -123,7 +125,7 @@ class Message extends Component {
   renderSendTime = () => {
     return (
       <View style={styles.timeView}>
-        <Text style={styles.timeStyle}>
+        <Text style={[styles.timeStyle, {color: ScreenMode.colors.bodyText}]}>
           {moment(this.props.message.created_at).format('hh:mm')}
         </Text>
         {this.renderTick()}
@@ -168,7 +170,7 @@ class Message extends Component {
       );
       return (
         <View style={styles.dateView}>
-          <Text style={styles.dateText}>
+          <Text style={[styles.dateText, {color: ScreenMode.colors.bodyText}]}>
             <Moment calendar={this.calendarStrings} element={Text} withTitle>
               {this.props.message.created_at}
             </Moment>
@@ -201,9 +203,10 @@ class Message extends Component {
                   styles.tickIcon,
                   {
                     color:
-                      ScreenMode.colors.type !== 'black'
+                      ScreenMode.colors.type !== ScreenMode.colors.bodyIcon
                         ? ScreenMode.colors.sendMessage
                         : '#0084ff',
+                    opacity: 0.5,
                   },
                 ]}
               />
@@ -211,11 +214,21 @@ class Message extends Component {
               <Icon
                 name="check-all"
                 type="MaterialCommunityIcons"
-                style={styles.tickIcon}
+                style={[
+                  styles.tickIcon,
+                  {color: ScreenMode.colors.bodyIcon, opacity: 0.5},
+                ]}
               />
             )
           ) : (
-            <Icon name="checkmark" type="Ionicons" style={styles.tickIcon} />
+            <Icon
+              name="checkmark"
+              type="Ionicons"
+              style={[
+                styles.tickIcon,
+                {color: ScreenMode.colors.bodyIcon, opacity: 0.5},
+              ]}
+            />
           )}
         </View>
       );
@@ -328,7 +341,7 @@ class Message extends Component {
                       color: color,
                       marginLeft: 10,
                     }}>
-                    {ScreenLanguage.currentlang.Photo}
+                    {ScreenLanguage.Photo}
                   </Text>
                 </View>
               ) : null}
@@ -358,10 +371,22 @@ class Message extends Component {
             : styles.balloon,
           {backgroundColor: ScreenMode.colors.sendMessage},
         ]
-      : [styles.image, {backgroundColor: ScreenMode.colors.sendMessage}]
+      : [
+          styles.image,
+          {
+            backgroundColor: ScreenMode.colors.sendMessage,
+            borderRadius: this.props.message.type === 'audio' ? 7 : 3,
+          },
+        ]
     : this.props.message.type === 'text'
     ? [styles.balloon, {backgroundColor: ScreenMode.colors.receivedMessage}]
-    : [styles.image, {backgroundColor: ScreenMode.colors.receivedMessage}];
+    : [
+        styles.image,
+        {
+          backgroundColor: ScreenMode.colors.receivedMessage,
+          borderRadius: this.props.message.type === 'audio' ? 7 : 3,
+        },
+      ];
 
   receivedTail = () => {
     if (

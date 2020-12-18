@@ -20,7 +20,7 @@ class  ActiveUsers extends Component {
 render(){
 
     return (
-       this.state.mounted ? <ActiveList active {...this.props} /> : <WaveIndicatorView size={100}/>
+       this.state.mounted ? <ActiveList discoverlist {...this.props} /> : <WaveIndicatorView size={100}/>
     );
 }
 

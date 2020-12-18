@@ -114,7 +114,7 @@ class MyStoriesProfile extends Component {
             {this.props.mystories.username}
           </Text>
           <Text>
-            {ScreenLanguage.currentlang.TotalViews +
+            {ScreenLanguage.TotalViews +
               GlobalFunctions.ShowViews(this.props.mystories.totalviews)}
           </Text>
 

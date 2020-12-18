@@ -101,9 +101,9 @@ class CreateRemind extends Unmounter {
       alignSelf: 'center',
     },
     Ok: {
-      marginRight: 6,
+      marginRight: 2,
       height: 28,
-      width: 28,
+      width: 35,
       borderRadius: 14,
       borderWidth: 0.2,
       borderColor: 'black',
@@ -126,8 +126,8 @@ class CreateRemind extends Unmounter {
         {...this.props}
         title={
           this.props.route.params.action === 'edit'
-            ? ScreenLanguage.currentlang.EditRemind
-            : ScreenLanguage.currentlang.NewRemind
+            ? ScreenLanguage.EditRemind
+            : ScreenLanguage.NewRemind
         }
       />
     );
@@ -188,7 +188,7 @@ class CreateRemind extends Unmounter {
       <View style={this.styles.periodView}>
         <Text style={this.styles.messageStart}>
           {' '}
-          {ScreenLanguage.currentlang.RemindMessageToSetFor}{' '}
+          {ScreenLanguage.RemindMessageToSetFor}{' '}
         </Text>
         <View style={this.styles.dateView}>
           <Text> the {'   '}</Text>
@@ -204,7 +204,7 @@ class CreateRemind extends Unmounter {
           <Item style={this.styles.toall}>
             <Left>
               <Text style={{color: 'black'}}>
-                {ScreenLanguage.currentlang.ToAll}
+                {ScreenLanguage.ToAll}
               </Text>
             </Left>
             <Right>
@@ -223,7 +223,7 @@ class CreateRemind extends Unmounter {
             }}>
             <Text style={this.styles.chooseText}>
               {' '}
-              {ScreenLanguage.currentlang.ChooseParticipant}{' '}
+              {ScreenLanguage.ChooseParticipant}{' '}
             </Text>
           </TouchableOpacity>
         </View>
@@ -232,7 +232,7 @@ class CreateRemind extends Unmounter {
           <View style={this.styles.categoryView}>
             <Text style={this.styles.messageStart}>
               {' '}
-              {ScreenLanguage.currentlang.Categories}{' '}
+              {ScreenLanguage.Categories}{' '}
             </Text>
             <View
               style={{
@@ -287,7 +287,7 @@ class CreateRemind extends Unmounter {
         <View style={this.styles.repeatText}>
           <Text style={this.styles.messageStart}>
             {' '}
-            {ScreenLanguage.currentlang.Repeat}{' '}
+            {ScreenLanguage.Repeat}{' '}
           </Text>
 
           <Icon

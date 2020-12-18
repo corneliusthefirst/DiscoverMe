@@ -50,8 +50,8 @@ const AudioBox = (props) => {
 const styles = StyleSheet.create({
   outerBoxStyle: {
     flexDirection: 'column',
-    width: scale(245),
-    height: verticalScale(70),
+    width: scale(230),
+    height: verticalScale(55),
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -34,13 +34,13 @@ class UploadStoryMenu extends DiscoveryMenu {
           <MenuItem
             textStyle={{color: '#0A4E52'}}
             onPress={this.props.openModalForPhoto}>
-            {ScreenLanguage.currentlang.PhotoToStory}
+            {ScreenLanguage.PhotoToStory}
           </MenuItem>
           <MenuDivider color="gray" />
           <MenuItem
             textStyle={{color: '#0A4E52'}}
             onPress={this.props.openModalForVideo}>
-            {ScreenLanguage.currentlang.VideoToStory}
+            {ScreenLanguage.VideoToStory}
           </MenuItem>
           <MenuDivider color="gray" />
         </Menu>

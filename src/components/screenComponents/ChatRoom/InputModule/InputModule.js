@@ -138,7 +138,6 @@ class InputModule extends Component {
       height: 300,
       width: '100%',
       flexDirection: 'column',
-      backgroundColor: '#FFFFFF',
       borderTopWidth: 0.2,
       borderTopColor: '#dddddd',
     },
@@ -345,7 +344,11 @@ class InputModule extends Component {
 
   render() {
     return (
-      <View style={this.styles.outerView}>
+      <View
+        style={[
+          this.styles.outerView,
+          {backgroundColor: ScreenMode.colors.bodyBackground},
+        ]}>
         <View
           style={
             this.state.keyboardShown
@@ -358,7 +361,7 @@ class InputModule extends Component {
                   borderTopWidth: StyleSheet.hairlineWidth,
                   borderColor: AppStyles.colors.grey,
                   paddingBottom: 0,
-                  backgroundColor: 'white',
+                  backgroundColor: ScreenMode.colors.bodyBackground,
                 }
               : {
                   height: this.height + this.state.heightIncrease,
@@ -369,7 +372,7 @@ class InputModule extends Component {
                   borderTopWidth: StyleSheet.hairlineWidth,
                   borderColor: AppStyles.colors.grey,
                   paddingBottom: isIphoneX() ? 24 : 0,
-                  backgroundColor: 'white',
+                  backgroundColor: ScreenMode.colors.bodyBackground,
                 }
           }>
           {!this.state.typing && (
@@ -445,6 +448,8 @@ class InputModule extends Component {
                 paddingRight: 63,
                 marginLeft: 5,
                 height: 36 + this.state.heightIncrease,
+                color: ScreenMode.colors.bodyText,
+                opacity: 0.6,
               }}
               onChangeText={(text) => this.onChangeText(text)}
               onContentSizeChange={(e) =>
@@ -455,6 +460,7 @@ class InputModule extends Component {
               }}
               underlineColorAndroid="transparent"
               placeholder={'Write a message'}
+              placeholderTextColor={ScreenMode.colors.bodyText}
               multiline
             />
 
@@ -681,10 +687,11 @@ class InputModule extends Component {
 
   renderImages = () => {
     return (
-      <View style={this.styles.emojiView}>
+      <View style={[this.styles.emojiView]}>
         <CameraRollPicker
           groupTypes="All"
           maximum={10}
+          backgroundColor={ScreenMode.colors.bodyBackground}
           initialNumToRender={12}
           selected={this.state.selected}
           assetType="All"
@@ -752,7 +759,10 @@ class InputModule extends Component {
               <Text
                 ellipsizeMode={'tail'}
                 numberOfLines={1}
-                style={this.styles.textStyle}>
+                style={[
+                  this.styles.textStyle,
+                  {color: ScreenMode.colors.bodyText},
+                ]}>
                 Files
               </Text>
             </View>
@@ -773,7 +783,10 @@ class InputModule extends Component {
               <Text
                 ellipsizeMode={'tail'}
                 numberOfLines={1}
-                style={this.styles.textStyle}>
+                style={[
+                  this.styles.textStyle,
+                  {color: ScreenMode.colors.bodyText},
+                ]}>
                 Audio
               </Text>
             </View>
@@ -791,7 +804,10 @@ class InputModule extends Component {
               <Text
                 ellipsizeMode={'tail'}
                 numberOfLines={1}
-                style={this.styles.textStyle}>
+                style={[
+                  this.styles.textStyle,
+                  {color: ScreenMode.colors.bodyText},
+                ]}>
                 Contacts
               </Text>
             </View>

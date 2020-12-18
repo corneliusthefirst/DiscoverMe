@@ -2,8 +2,12 @@
 import storage from './Storage';
 import {observable, action} from 'mobx';
 
-export default class CurrentScreenLanguage {
-  constructor() {}
+ class CurrentScreenLanguage {
+  constructor() {
+    this.getCurrentLanguage().then((lang)=>{
+      this.setLanguage(lang);
+    });
+  }
 
   @observable currentlanguage = 'English';
 
@@ -36,3 +40,7 @@ export default class CurrentScreenLanguage {
     });
   }
 }
+
+
+//const Lang = new CurrentScreenLanguage();
+export  default  CurrentScreenLanguage;

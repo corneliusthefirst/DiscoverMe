@@ -133,7 +133,7 @@ class Toolbar extends Component {
   render() {
     return (
       <Header
-        height={52}
+        height={60}
         barStyle={ScreenMode.colors.statusbarStyle}
         headerBody={this.headerBody}
       />

@@ -9,7 +9,7 @@ import FastImage from 'react-native-fast-image';
 
 export default class Avatar extends Component {
   render() {
-    const {uri, large, isGroup, enableDot} = this.props;
+    const {uri, large, isGroup, enableDot, source} = this.props;
 
     return (
       <View
@@ -24,11 +24,15 @@ export default class Avatar extends Component {
           <Icon name="octoface" type="Octicons" size={64} color="grey" />
         ) : uri ? (
           <FastImage
-            source={{
-              uri: uri,
-              headers: {Authorization: 'someAuthToken'},
-              priority: FastImage.priority.normal,
-            }}
+            source={
+              source
+                ? source
+                : {
+                    uri: uri,
+                    headers: {Authorization: 'someAuthToken'},
+                    priority: FastImage.priority.normal,
+                  }
+            }
             style={
               this.props.style
                 ? this.props.style

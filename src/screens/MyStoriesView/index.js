@@ -6,10 +6,11 @@ import {Icon} from 'native-base';
 import stores from '../../stores/index';
 import Swiper from 'react-native-swiper';
 import ProgressiveImage from '../../components/screenComponents/ChatRoom/components/progressiveImage';
-import AppStyles from '../../config/styles';
+import ScreenMode from '../../components/screenMode';
+import {observer} from 'mobx-react';
 
 //let {height, width} = Dimensions.get('window');
-
+@observer
 class MyStoryView extends Component {
   constructor(props) {
     super(props);
@@ -58,7 +59,7 @@ class MyStoryView extends Component {
     icon: {
       fontSize: 22,
       marginRight: 10,
-      color: AppStyles.colors.black,
+      //color: ScreenMode.colors.bodyIcon,
     },
     likes: {
       fontSize: 10,
@@ -93,14 +94,14 @@ class MyStoryView extends Component {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: 'white',
+          backgroundColor: ScreenMode.colors.bodyBackground,
         }}>
         <View
           style={{
             height: 60,
             padding: 10,
             flexDirection: 'row',
-            backgroundColor: 'white',
+            backgroundColor: ScreenMode.colors.bodyBackground,
           }}>
           <View style={{flexDirection: 'row'}}>
             <View style={(this.styles.likeView, {marginLeft: 5})}>
@@ -113,10 +114,17 @@ class MyStoryView extends Component {
                 <Icon
                   name="heart-outline"
                   type="MaterialCommunityIcons"
-                  style={this.styles.icon}
+                  style={[
+                    this.styles.icon,
+                    {color: ScreenMode.colors.bodyIcon},
+                  ]}
                 />
               </TouchableOpacity>
-              <Text style={this.styles.likes}>
+              <Text
+                style={[
+                  this.styles.likes,
+                  {color: ScreenMode.colors.bodyText},
+                ]}>
                 {
                   stores.MystoriesStore.mystories.stories[this.state.index]
                     .likes
@@ -135,10 +143,17 @@ class MyStoryView extends Component {
                 <Icon
                   name="eye-outline"
                   type="MaterialCommunityIcons"
-                  style={this.styles.icon}
+                  style={[
+                    this.styles.icon,
+                    {color: ScreenMode.colors.bodyIcon},
+                  ]}
                 />
               </TouchableOpacity>
-              <Text style={this.styles.likes}>
+              <Text
+                style={[
+                  this.styles.likes,
+                  {color: ScreenMode.colors.bodyText},
+                ]}>
                 {
                   stores.MystoriesStore.mystories.stories[this.state.index]
                     .views
@@ -190,12 +205,16 @@ class MyStoryView extends Component {
           onIndexChanged={(index) => this.onIndexChanged(index)}>
           {stores.MystoriesStore.mystories.stories.map((item, index) => {
             return (
-              <View style={this.styles.container}>
+              <View
+                style={[
+                  this.styles.container,
+                  {backgroundColor: ScreenMode.colors.bodyBackground},
+                ]}>
                 <View
                   style={{
                     height: '97%',
                     width: '98%',
-                    backgroundColor: '#ededed',
+                    backgroundColor: ScreenMode.colors.bodyBackground,
                   }}>
                   {item.type === 'video' ? (
                     <ProgressiveImage
@@ -230,14 +249,19 @@ class MyStoryView extends Component {
             width: '93%',
             flexDirection: 'row',
             alignItems: 'flex-start',
-            backgroundColor: 'white',
+            backgroundColor: ScreenMode.colors.bodyBackground,
             padding: 5,
             paddingLeft: 0,
           }}>
-          <Text style={{fontWeight: 'bold'}}>BIO : </Text>
+          <Text style={{fontWeight: 'bold', color: ScreenMode.colors.bodyText}}>
+            BIO :{' '}
+          </Text>
           <View
             style={{display: 'flex', padding: 5, paddingTop: 0, width: '100%'}}>
-            <Text numberOfLines={3} ellipsizeMode="tail">
+            <Text
+              numberOfLines={3}
+              ellipsizeMode="tail"
+              style={{color: ScreenMode.colors.bodyText}}>
               {stores.MystoriesStore.mystories.bio}
             </Text>
           </View>

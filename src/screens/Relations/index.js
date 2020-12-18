@@ -20,7 +20,7 @@ class  Relations extends Component {
     }
 render(){
     return (
-        <View style={{height:'100%', width:'100%'}}>
+        <View style={{height:'100%', width:'100%',position:'relative',paddingTop:40,marginTop:5}}>
             <ActiveList active={false} {...this.props} />
             <FloatingButton  {...this.props} />
        </View>

@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from 'native-base';
 import RenderDate from '../../RenderDate';
 import ScreenLanguage from '../../screenLanguage';
 
@@ -49,14 +49,14 @@ class UserView extends React.PureComponent {
         />
         <View style={{ flex: 1 }}>
           <Text style={this.styles.name}>{this.props.name}</Text>
-          <Text style={this.styles.time}>{ScreenLanguage.currentlang.Posted} {this.props.updated_at ? <RenderDate date={this.props.updated_at} /> : "2h ago"}</Text>
+          <Text style={this.styles.time}>{ScreenLanguage.Posted} {this.props.updated_at ? <RenderDate date={this.props.updated_at} /> : "2h ago"}</Text>
         </View>
         <TouchableOpacity onPress={this.props.onClosePress}>
           <Icon
             name="close"
-            color="white"
-            size={25}
-            style={{ marginRight: 8 }}
+            size={23}
+            type={"MaterialCommunityIcons"}
+            style={{ marginRight: 8, color:'white' }}
           />
         </TouchableOpacity>
       </View>

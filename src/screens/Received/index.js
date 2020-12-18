@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import DiscoveryFlatList from '../../components/DiscoveryFlatList';
@@ -13,9 +14,11 @@ import AppStyles from '../../config/styles';
 import {Button} from 'native-base';
 import {observer} from 'mobx-react';
 import received from '../../assets/fake_received_data';
+import headerStyle from '../../components/screenComponents/headerStyle';
+import shadower from '../../components/shadower';
 
 @observer
-class Received extends Unmounter {
+class Received extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,6 +30,7 @@ class Received extends Unmounter {
     container: {
       height: '100%',
       width: '100%',
+      //paddingTop:10,
     },
     ItemView: {
       flexDirection: 'column',
@@ -48,24 +52,29 @@ class Received extends Unmounter {
     },
     textGreen: {color: AppStyles.colors.green},
     textRed: {color: AppStyles.colors.red},
+    textWhite: {color: AppStyles.colors.white},
+    textBlack: {color: AppStyles.colors.black},
     button: {
       //width: 75,
-      borderRadius: 5,
+      borderRadius: 15,
+      //borderWidth: 1,
       backgroundColor: 'white',
       justifyContent: 'center',
       alignItems: 'center',
       height: 33,
-      paddingHorizontal: 10,
+      paddingHorizontal: 25 ,
     },
     buttonContainer: {
+      width:'100%',
       flexDirection: 'row',
       alignSelf: 'flex-end',
-      marginTop: -20,
+      justifyContent:'flex-end',
+      marginRight:18,
     },
   });
 
-  willUnMount() {}
-  didMount() {}
+  /*willUnMount() {}
+  didMount() {}*/
 
   onClickAccept = () => {};
   onClickRefuse = () => {};
@@ -88,42 +97,69 @@ class Received extends Unmounter {
             />
           </View>
 
-          <View style={this.styles.state}>
-            {item.accept ? (
-              <Text style={[this.styles.textGreen, {paddingRight: 5}]}>
-                #accepted
-              </Text>
-            ) : null}
+         {item.accept || item.refuse ?
+         <View style={this.styles.state}>
+         {item.accept ? (
+           <Text style={[this.styles.textGreen, {paddingRight: '5%'}]}>
+             #accepted
+           </Text>
+         ) : null}
 
-            {item.refuse ? (
-              <Text style={[this.styles.textRed, {paddingRight: 5}]}>
-                #refused
-              </Text>
-            ) : null}
-
-            <View style={this.styles.buttonContainer}>
-              {!item.accept && !item.refuse ? (
-                <Button
-                  style={[this.styles.button, {marginRight: 20}]}
-                  onPress={this.onClickAccept}>
-                  <Text style={this.styles.textGreen}>accept</Text>
-                </Button>
-              ) : null}
-              {!item.accept && !item.refuse ? (
-                <Button style={this.styles.button} onPress={this.onClickRefuse}>
-                  <Text style={this.styles.textRed}>refuse</Text>
-                </Button>
-              ) : null}
-            </View>
-          </View>
+         {item.refuse ? (
+           <Text style={[this.styles.textRed, {paddingRight: '5%'}]}>
+             #refused
+           </Text>
+         ) : null}
+       </View> : null
+        }
         </View>
+
+        <View style={this.styles.buttonContainer}>
+         {!item.accept && !item.refuse ? (
+           <Button
+             style={[this.styles.button, {marginRight: 20,backgroundColor:ScreenMode.colors.sendMessage}]}
+             onPress={this.onClickAccept}>
+             <Text style={this.styles.textWhite}>accept</Text>
+           </Button>
+         ) : null}
+         {!item.accept && !item.refuse ? (
+           <Button style={[this.styles.button,{backgroundColor:'#dddddd'}]} onPress={this.onClickRefuse}>
+             <Text style={this.styles.textBlack}>refuse</Text>
+           </Button>
+         ) : null}
+       </View>
+
       </View>
+    );
+  };
+
+
+  headerBody = () => {
+    return (
+      <HeaderBodySimple
+        {...this.props}
+        title={ScreenLanguage.Received}
+        goBack={() => {
+          this.props.navigation.goBack();
+        }}
+      />
     );
   };
 
   render() {
     return this.state.mounted ? (
       <View style={this.styles.container}>
+
+        {/*<View style={{borderBottomWidth:0.2,...shadower(4)}}>
+        <Header
+              height={50}
+              backgroundColor={ScreenMode.colors.headerBackground}
+              barStyle={ScreenMode.colors.statusbarStyle}
+              headerBody={this.headerBody}
+        />
+        </View>*/}
+
+
         <DiscoveryFlatList
           data={received}
           renderItem={this.renderItem}

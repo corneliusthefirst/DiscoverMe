@@ -2,9 +2,10 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Alert, ScrollView, Image } from 'react-native';
 import { Table, TableWrapper, Row, Cell } from '../../../BleashupTable/index';
-import { Icon, Thumbnail } from 'native-base';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ViewMoreText from '../BleashupViewMoreText';
 import ColorList from '../../../colorList';
 import AccordionModuleNative from '../../MyTasks/BleashupAccordion';
@@ -316,7 +317,7 @@ export default class voteCard extends Component {
         return (
               <TouchableOpacity onPress={() => this._alertIndex(index)}>
             <View style={styles.support}>
-                <Thumbnail small source={{uri:votedata.data[index].media.profile}} />
+                <Image style={{height:30,width:30,borderRadius:15}} source={{uri:votedata.data[index].media.profile}} />
             </View>
              </TouchableOpacity>
           );
@@ -326,7 +327,7 @@ export default class voteCard extends Component {
   support = (cellIndex,index, votedata) => (
     <TouchableOpacity onPress={() => this._alertIndex(index)}>
       <View style={styles.support}>
-        <Icon style={styles.supportIcon} type="MaterialCommunityIcons" name="coin" />
+        <MaterialCommunityIcons style={styles.supportIcon}  name="coin" />
       </View>
     </TouchableOpacity>
   );
@@ -334,7 +335,7 @@ export default class voteCard extends Component {
   vote = (cellIndex,index, votedata) => {
     return (
       <TouchableOpacity onPress={() => !votedata.done ? this.voteMade(votedata, index) : null }>
-       {votedata.data[index].voted ? <Icon type="Ionicons" name="ios-checkmark" style={styles.voteCheck}/> : <View style={styles.btn} />}
+       {votedata.data[index].voted ? <Ionicons  name="ios-checkmark" style={styles.voteCheck}/> : <View style={styles.btn} />}
 
       </TouchableOpacity>
     );
@@ -489,7 +490,7 @@ renderContent = () => {
          <View style={{flexDirection:'row',padding:5}}>
            <TouchableOpacity onPress={() => this._alertIndex()}>
             <View style={styles.support}>
-                <Thumbnail small source={{uri:this.state.votedata.creatorInfo.profile}} style={{height:40,width:40,borderRadius:20}} />
+                <Image  source={{uri:this.state.votedata.creatorInfo.profile}} style={{height:40,width:40,borderRadius:20}} />
             </View>
              </TouchableOpacity>
              <View style={{alignItems:'flex-start',justifyContent:'center',paddingLeft:20,flexDirection:'column'}}>

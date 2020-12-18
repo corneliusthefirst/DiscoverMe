@@ -48,20 +48,19 @@ renderTopTabs = () => {
     return (
         <Tab.Navigator
           tabBarOptions={{
-            // activeTintColor: ScreenMode.colors.type === 'white' ?  ScreenMode.colors.blue : '#000000',
-            activeTintColor:'black',
-            inactiveTintColor: 'gray',
-            style: { backgroundColor: ScreenMode.colors.headerBackground},
-            indicatorStyle: {backgroundColor: ScreenMode.colors.type === 'white' ? ScreenMode.colors.lightBlue : '#000000'},
-            tabStyle : {shadowRadius : 0,backgroundColor:'white'},
+            activeTintColor: ScreenMode.colors.sendMessage,
+            inactiveTintColor: ScreenMode.colors.bodySubtext,
+            indicatorStyle: {backgroundColor: ScreenMode.colors.sendMessage},
+            tabStyle : {shadowRadius : 0},
+            style: {backgroundColor:ScreenMode.colors.bodyBackground},
             labelStyle: {fontSize:13, fontWeight: '700'},
           }}
           swipeEnabled={false}
           initialRouteName="MyStories"
           //removeClippedSubviews={true}
         >
-          <Tab.Screen  name="MyStories"  options={{ tabBarLabel: ScreenLanguage.currentlang.MyStories }}  children={()=><MyStoriesView {...this.props} donotBlur={()=>{/*this.donotBlur();*/}}/>}/>
-          <Tab.Screen  name="ModifyProfile" component = {ModifyProfile} options={{ tabBarLabel: ScreenLanguage.currentlang.ModifyProfile }} />
+           <Tab.Screen  name="ModifyProfile" component = {ModifyProfile} options={{ tabBarLabel: ScreenLanguage.ModifyProfile }} />
+          <Tab.Screen  name="MyStories"  options={{ tabBarLabel: ScreenLanguage.MyStories }}  children={()=><MyStoriesView {...this.props} donotBlur={()=>{/*this.donotBlur();*/}}/>}/>
 
         </Tab.Navigator>
 

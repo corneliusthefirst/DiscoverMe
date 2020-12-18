@@ -1,25 +1,17 @@
-import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {PureComponent} from 'react';
+import {StyleSheet} from 'react-native';
 import ScreenMode from '../../components/screenMode';
 import Icon from 'react-native-vector-icons/Feather';
+import {observer} from 'mobx-react';
+import ActionButton from 'react-native-action-button';
 
-class FloatingButton extends Component {
+@observer
+class FloatingButton extends PureComponent {
   constructor(props) {
     super(props);
   }
 
   styles = StyleSheet.create({
-    FloatingButton: {
-      position: 'absolute',
-      bottom: 25,
-      right: 15,
-      backgroundColor: ScreenMode.colors.sendMessage,
-      height: 52,
-      width: 52,
-      borderRadius: 26,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
     Icon: {
       color: 'white',
       fontSize: 20,
@@ -27,9 +19,16 @@ class FloatingButton extends Component {
   });
   render() {
     return (
-      <View style={this.styles.FloatingButton}>
-        <Icon name="user-plus" type="Feather" style={this.styles.Icon} />
-      </View>
+      <ActionButton
+        buttonColor={ScreenMode.colors.sendMessage}
+        renderIcon={() => (
+          <Icon name="user-plus" type="Feather" style={this.styles.Icon} />
+        )}
+        offsetX={20}
+        onPress={() => {
+          this.props.navigation.navigate('ContactsList');
+        }}
+      />
     );
   }
 }
